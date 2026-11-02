@@ -1,0 +1,34 @@
+{
+  "name": "kde-plasma-code-color-sync",
+  "displayName": "KDE Plasma Color Sync",
+  "description": "Synchronize KDE Plasma color roles with the Code OSS workbench.",
+  "version": "0.1.0",
+  "publisher": "Evohl",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Evohl/kde-plasma-code-color-sync.git"
+  },
+  "engines": {
+    "vscode": "^1.80.0"
+  },
+  "categories": ["Other"],
+  "extensionKind": ["ui"],
+  "main": "./extension.js",
+  "activationEvents": ["onStartupFinished"],
+  "contributes": {
+    "commands": [
+      {
+        "command": "kdeColorSync.start",
+        "title": "KDE Color Sync: Start Synchronization"
+      },
+      {
+        "command": "kdeColorSync.restore",
+        "title": "KDE Color Sync: Stop and Restore Colors"
+      }
+    ]
+  },
+  "scripts": {
+    "test": "node --test test/*.test.js"
+  }
+}
