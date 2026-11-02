@@ -46,6 +46,12 @@ The extension reads `Colors:Window`, `Colors:View`, `Colors:Button`, `Colors:Sel
 
 Code-rendered menus use window colors, the same selection tint as lists, and borders and separators mixed from inactive window text. Native application menus are controlled by the desktop rather than these Code theme colors.
 
+Quick Access and other quick pickers use window colors, the same selection tint as lists for focused entries, and inactive window text for group labels and borders. Their input fields retain the view colors used by other text inputs.
+
+The integrated terminal uses the KDE view background and foreground; ANSI colors remain controlled by the active Code OSS theme. Workbench surface borders and terminal split borders use the same inactive-text tint as menu borders. The focus border retains the KDE view focus color. Modern UI border colors apply only in Code OSS versions and layouts that support them; native window borders remain controlled by the desktop.
+
+Preformatted text, including inline code in Copilot Chat, uses window text, a subtle background mixed from inactive window text, and the same border tint as menus. These colors also apply to other Code OSS views that use the preformatted text theme colors; syntax highlighting remains controlled by the active theme.
+
 Only the selected keys in `palette.js` are managed. Existing values for those keys are saved before being overridden; unrelated and theme-specific entries are retained. The extension watches the KDE configuration directory, including replacement of `kdeglobals`, and reapplies changed values while Code OSS is running. It reports read or update failures in the `KDE Color Sync` output channel.
 
 The extension reads configured values, not the defaults or state-dependent colors calculated by `KColorScheme`. If a required role is missing or invalid, synchronization fails without changing the existing colors. Missing inactive-title colors fall back to window colors, missing tooltip colors fall back together to view colors, and missing hover decorations fall back to the view focus color. Use one extension host per Code OSS profile: simultaneous hosts can race when saving and restoring shared color settings.

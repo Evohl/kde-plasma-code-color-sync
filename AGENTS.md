@@ -19,7 +19,11 @@
 ## Work Guidance
 
 - Keep KDE-to-Code color mapping explicit and use paired selection background and foreground colors.
+- The integrated terminal uses the view background and foreground; its ANSI colors remain controlled by the active theme.
+- Workbench surface and terminal split borders mix inactive window text into the window background; focus indicators retain the view focus color.
+- Preformatted text, including inline code in Copilot Chat, uses window text, a subtle inactive-text tint as background, and the workbench border tint.
 - Code lists use the window foreground with a subdued selection tint and an opaque hover tint mixed into the window background; editor selections retain KDE selection colors.
+- Quick Access uses window colors, the same subdued selection tint as lists for focused entries, and inactive window text for group labels and borders.
 - Menus use window colors and the same subdued selection tint as lists; borders and separators mix inactive window text into the window background.
 - Active modern activity bar items use the window foreground and the same subdued selection tint as Code lists.
 - The welcome page uses the view background; its tiles use the window background and list hover tint, and their progress indicator uses the selection color.

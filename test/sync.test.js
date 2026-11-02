@@ -18,6 +18,11 @@ test('maps controls to KDE roles and preserves selection contrast', () => {
   assert.equal(colors['settings.textInputBackground'], '#111111');
   assert.equal(colors['settings.numberInputBackground'], '#111111');
   assert.equal(colors['settings.dropdownBackground'], '#222222');
+  assert.equal(colors['terminal.background'], '#111111');
+  assert.equal(colors['terminal.foreground'], '#ffffff');
+  for (const key of ['sideBar.border', 'activityBar.border', 'modernActivityBar.border', 'surface.border', 'editor.border', 'editorGroup.border', 'panel.border', 'modernPanel.border', 'terminal.border', 'statusBar.border', 'titleBar.border']) {
+    assert.equal(colors[key], '#444444', key);
+  }
   assert.equal(colors['editor.selectionBackground'], '#00ff00');
   assert.equal(colors['editor.selectionForeground'], '#000000');
   assert.equal(colors['activityBarBadge.background'], '#00ff00');
@@ -26,6 +31,9 @@ test('maps controls to KDE roles and preserves selection contrast', () => {
   assert.equal(colors['modernActivityBarItem.activeForeground'], '#dddddd');
   assert.equal(colors['focusBorder'], '#aabbcc');
   assert.equal(colors['textLink.foreground'], '#ddeeff');
+  assert.equal(colors['textPreformat.foreground'], '#dddddd');
+  assert.equal(colors['textPreformat.background'], '#323232');
+  assert.equal(colors['textPreformat.border'], '#444444');
   assert.equal(colors['titleBar.inactiveBackground'], '#303030');
   assert.equal(colors['titleBar.inactiveForeground'], '#777777');
   assert.equal(colors['commandCenter.inactiveForeground'], '#777777');
@@ -46,6 +54,14 @@ test('maps controls to KDE roles and preserves selection contrast', () => {
   assert.equal(colors['list.inactiveSelectionForeground'], '#dddddd');
   assert.equal(colors['list.hoverBackground'], '#411b1b');
   assert.equal(colors['list.hoverForeground'], '#dddddd');
+  assert.equal(colors['quickInput.background'], '#202020');
+  assert.equal(colors['quickInput.foreground'], '#dddddd');
+  assert.equal(colors['quickInputTitle.background'], '#202020');
+  assert.equal(colors['quickInputList.focusBackground'], '#166316');
+  assert.equal(colors['quickInputList.focusForeground'], '#dddddd');
+  assert.equal(colors['quickInputList.focusIconForeground'], '#dddddd');
+  assert.equal(colors['pickerGroup.foreground'], '#999999');
+  assert.equal(colors['pickerGroup.border'], '#444444');
   assert.equal(colors['toolbar.hoverBackground'], '#ff000026');
   assert.equal(colors['editor.hoverHighlightBackground'], '#ff000026');
   assert.equal(colors['settings.rowHoverBackground'], '#ff000026');
@@ -62,14 +78,28 @@ test('maps controls to KDE roles and preserves selection contrast', () => {
   assert.equal(fallback['list.hoverBackground'], '#35373a');
   assert.equal(fallback['welcomePage.tileHoverBackground'], '#35373a');
   const light = mapPalette({ ...palette, window: '#eeeeee', windowText: '#222222', selection: '#0000ff', selectionText: '#ffffff' });
+  assert.equal(light['textPreformat.foreground'], '#222222');
+  assert.equal(light['textPreformat.background'], '#e1e1e1');
+  assert.equal(light['textPreformat.border'], '#d5d5d5');
   assert.equal(light['modernActivityBarItem.activeBackground'], '#a7a7f3');
   assert.equal(light['modernActivityBarItem.activeForeground'], '#222222');
+  for (const key of ['sideBar.border', 'activityBar.border', 'modernActivityBar.border', 'surface.border', 'editor.border', 'editorGroup.border', 'panel.border', 'modernPanel.border', 'terminal.border', 'statusBar.border', 'titleBar.border']) {
+    assert.equal(light[key], '#d5d5d5', key);
+  }
   assert.equal(light['menu.background'], '#eeeeee');
   assert.equal(light['menu.foreground'], '#222222');
   assert.equal(light['menu.selectionBackground'], '#a7a7f3');
   assert.equal(light['menu.selectionForeground'], '#222222');
   assert.equal(light['menubar.selectionBackground'], '#a7a7f3');
   assert.equal(light['menubar.selectionForeground'], '#222222');
+  assert.equal(light['quickInput.background'], '#eeeeee');
+  assert.equal(light['quickInput.foreground'], '#222222');
+  assert.equal(light['quickInputTitle.background'], '#eeeeee');
+  assert.equal(light['quickInputList.focusBackground'], '#a7a7f3');
+  assert.equal(light['quickInputList.focusForeground'], '#222222');
+  assert.equal(light['quickInputList.focusIconForeground'], '#222222');
+  assert.equal(light['pickerGroup.foreground'], '#999999');
+  assert.equal(light['pickerGroup.border'], '#d5d5d5');
   assert.equal(light['welcomePage.tileBackground'], '#eeeeee');
   assert.equal(light['welcomePage.progress.foreground'], '#0000ff');
   assert.equal(light['activityBarBadge.background'], '#0000ff');

@@ -18,7 +18,7 @@ test('extension syncs, observes KDE changes, respects edits and restores safely'
   let watchCallback;
   let onUpdate;
   let color = '#3dd425';
-  let settings = { 'focusBorder': '#abcdef', 'custom.color': '#123456' };
+  let settings = { 'focusBorder': '#abcdef', 'terminal.background': '#010203', 'panel.border': '#101010', 'textPreformat.background': '#111111', 'custom.color': '#123456' };
   const initial = { ...settings };
   const vscode = {
     ConfigurationTarget: { Global: 1 },
@@ -63,18 +63,28 @@ test('extension syncs, observes KDE changes, respects edits and restores safely'
     await commands.get('kdeColorSync.start')();
     assert.equal(settings.focusBorder, '#3dd425');
     assert.equal(settings['input.background'], '#303030');
+    assert.equal(settings['terminal.background'], '#303030');
+    assert.equal(settings['terminal.foreground'], '#eeeeee');
+    assert.equal(settings['panel.border'], '#444444');
+    assert.equal(settings['textPreformat.foreground'], '#ffffff');
+    assert.equal(settings['textPreformat.background'], '#323232');
+    assert.equal(settings['textPreformat.border'], '#444444');
 
     settings.focusBorder = '#123abc';
+    settings['terminal.background'] = '#445566';
+    settings['textPreformat.foreground'] = '#aabbcc';
     color = '#ff0000';
     const updated = new Promise(resolve => { onUpdate = resolve; });
     watchCallback('rename', 'kdeglobals');
     await updated;
     onUpdate = undefined;
     assert.equal(settings.focusBorder, '#123abc');
+    assert.equal(settings['terminal.background'], '#445566');
+    assert.equal(settings['textPreformat.foreground'], '#aabbcc');
     assert.equal(settings['editor.selectionBackground'], '#ff0000');
 
     await commands.get('kdeColorSync.restore')();
-    assert.deepEqual(settings, { ...initial, focusBorder: '#123abc' });
+    assert.deepEqual(settings, { ...initial, focusBorder: '#123abc', 'terminal.background': '#445566', 'textPreformat.foreground': '#aabbcc' });
     assert.equal(state.get('kdeColorSync.stopped'), true);
     assert.equal(state.has('kdeColorSync.savedColors'), false);
     assert.equal(messages.some(message => /Could not synchronize/.test(message)), false);
